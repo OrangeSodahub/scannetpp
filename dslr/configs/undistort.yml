@@ -1,5 +1,5 @@
 # folder where the data is downloaded
-data_root: DATA_ROOT
+data_root: # /home/xxx/.../scannetpp
 
 splits: [nvs_sem_train, nvs_sem_val]
 
@@ -12,8 +12,8 @@ splits: [nvs_sem_train, nvs_sem_val]
 # input_mask_dir: resized_anon_masks
 # input_transforms_path: nerfstudio/transforms.json
 
-downscale_factor: 2.0
-# All use the relative path to DATA_ROOT/dslr/
+# All use the relative path to DATA_ROOT/dslr/ if out_dir not given
+out_dir: # /home/xxx/.../scannetpp_processed
 out_image_dir: undistorted_images
 out_mask_dir: undistorted_anon_masks
 out_transforms_path: nerfstudio/transforms_undistorted.json

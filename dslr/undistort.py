@@ -112,6 +112,9 @@ def main(args):
             split_path = Path(cfg.data_root) / "splits" / f"{split}.txt"
             scene_ids += read_txt_list(split_path)
 
+    # get the out_dir
+    out_dir = cfg.get("out_dir", None)
+
     # get the options to process
     # go through each scene
     for scene_id in tqdm(scene_ids, desc="scene"):
@@ -134,9 +137,14 @@ def main(args):
         else:
             input_transforms_path = scene.dslr_dir / input_transforms_path
 
-        out_image_dir = scene.dslr_dir / cfg.out_image_dir
-        out_mask_dir = scene.dslr_dir / cfg.out_mask_dir
-        out_transforms_path = scene.dslr_dir / cfg.out_transforms_path
+        # use `out_dir` if given
+        out_dslr_dir = scene.dslr_dir
+        if out_dir is not None:
+            out_scene_root = Path(out_dir) / "data" / scene_id
+            out_dslr_dir = out_scene_root / "dslr"
+        out_image_dir = out_dslr_dir / cfg.out_image_dir
+        out_mask_dir = out_dslr_dir / cfg.out_mask_dir
+        out_transforms_path = out_dslr_dir / cfg.out_transforms_path
 
         transforms = load_json(input_transforms_path)
         assert len(transforms["frames"]) > 0
