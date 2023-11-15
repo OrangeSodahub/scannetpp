@@ -8,9 +8,9 @@ splits: [nvs_sem_train, nvs_sem_val]
 # The following paths should be given relative to the DATA_ROOT/dslr/
 # If not given, will use the default directory defined in ScannetppScene class
 
-# input_image_dir: resized_images
-# input_mask_dir: resized_anon_masks
-# input_transforms_path: nerfstudio/transforms.json
+input_image_dir: undistorted_images
+input_mask_dir: undistorted_anon_masks
+input_transforms_path: nerfstudio/transforms_undistorted.json
 
 downscale_factor: 2.0
 # All use the relative path to DATA_ROOT/dslr/
